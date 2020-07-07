@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('アプリ'),
+        title: Text('アプリ開発しようぜ'),
       ),
       body: Container(
         width: double.infinity,
