@@ -4,7 +4,7 @@ class MainModel extends ChangeNotifier{
   String asaiText = '浅井';
 
   void changeAsaiText(){
-    asaiText = 'かわったぜ';
+    asaiText = '山田すみれ';
     notifyListeners();
   }
 }
