@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/book_list_page.dart';
 import 'package:provider/provider.dart';
-
+//import 'package:flutter_app/book_list_model.dart';
 import 'main_model.dart';
-import 'next_page.dart';
+//import 'next_page.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,31 +21,30 @@ class MyApp extends StatelessWidget {
             title: Text('スポーツ'),
           ),
           body: Consumer<MainModel>(builder: (context, model, child) {
-              return Center(
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      model.asaiText,
-                      style: TextStyle(
-                        fontSize: 30,
-                      ),
+            return Center(
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    model.asaiText,
+                    style: TextStyle(
+                      fontSize: 30,
                     ),
-                    RaisedButton(
-                      child: Text('ボタン'),
-                      onPressed: (){
-                        //何かする
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => BookList()),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              );
-            }
-          ),
-         ),
+                  ),
+                  RaisedButton(
+                    child: Text('一覧表示'),
+                    onPressed: () {
+                      //何かする
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => BookListPage()),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            );
+          }),
+        ),
       ),
     );
   }
