@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/book_list_page.dart';
+import 'package:flutter_app/login_page.dart';
+import 'package:flutter_app/signup_page.dart';
 import 'package:provider/provider.dart';
 //import 'package:flutter_app/book_list_model.dart';
 import 'main_model.dart';
@@ -26,14 +28,6 @@ class MyApp extends StatelessWidget {
                     color: Colors.black,
                   ),
                 ),
-                Row(
-                  children: <Widget>[
-                    Text('野球'),
-                    Text('　サッカー'),
-                    Text('　バスケ'),
-                    Text('　卓球'),
-                  ],
-                ),
               ],
             ),
           ),
@@ -48,18 +42,28 @@ class MyApp extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '本日のおすすめ',
+                    'mail password',
                     style: TextStyle(
                       fontSize: 30,
                     ),
                   ),
                   RaisedButton(
-                    child: Text('一覧表示'),
+                    child: Text('登録'),
                     onPressed: () {
                       //何かする
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => BookListPage()),
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                      );
+                    },
+                  ),
+                  RaisedButton(
+                    child: Text('ログイン'),
+                    onPressed: () {
+                      //何かする
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
                       );
                     },
                   ),
