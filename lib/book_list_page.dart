@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/book_list_model.dart';
 import 'package:provider/provider.dart';
 import 'add_book_page.dart';
+import 'book.dart';
 import 'book_list_model.dart';
 
 class BookListPage extends StatelessWidget {
@@ -38,6 +39,28 @@ class BookListPage extends StatelessWidget {
                         model.fetchBooks();
                       },
                     ),
+                    onLongPress: () async {
+                      //todo :
+                      await showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('${book.title}を削除しますか？'),
+                            actions: <Widget>[
+                              FlatButton(
+                                child: Text('OK'),
+                                onPressed: () async {
+                                  Navigator.of(context).pop();
+
+                                  //todo : 削除のAPIを叩く
+                                  await deleteBook(context, model, book);
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                   ),
                 )
                 .toList();
@@ -64,6 +87,43 @@ class BookListPage extends StatelessWidget {
           );
         }),
       ),
+    );
+  }
+
+  Future deleteBook(
+    BuildContext context,
+    BookListModel model,
+    Book book,
+  ) async {
+    try {
+      await model.deleteBook(book);
+      await model.fetchBooks();
+      //await _showDialog(context, '削除しました');
+    } catch (e) {
+      await _showDialog(context, e.toString());
+      print(e.toString());
+    }
+  }
+
+  Future _showDialog(
+    BuildContext context,
+    String title,
+  ) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
