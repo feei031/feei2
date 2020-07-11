@@ -18,7 +18,24 @@ class MyApp extends StatelessWidget {
         create: (_) => MainModel(),
         child: Scaffold(
           appBar: AppBar(
-            title: Text('スポーツ'),
+            title: Column(
+              children: <Widget>[
+                Text(
+                  'スポーツ一覧',
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+                Row(
+                  children: <Widget>[
+                    Text('野球'),
+                    Text('　サッカー'),
+                    Text('　バスケ'),
+                    Text('　卓球'),
+                  ],
+                ),
+              ],
+            ),
           ),
           body: Consumer<MainModel>(builder: (context, model, child) {
             return Center(
@@ -26,6 +43,12 @@ class MyApp extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     model.asaiText,
+                    style: TextStyle(
+                      fontSize: 30,
+                    ),
+                  ),
+                  Text(
+                    '本日のおすすめ',
                     style: TextStyle(
                       fontSize: 30,
                     ),
